@@ -443,6 +443,4 @@ function API.CreateButton(tab, text, callback)
 end
 
 -- ===== FINAL: EXPOSE API =====
-_G.UAER_UI = API    
-end
 _G.UAER_UI = API
