@@ -383,7 +383,6 @@ local function makeControl(icon, action)
     btn.Text = icon
     btn.TextColor3 = COLORS.TextMuted
     btn.Font = Enum.Font.GothamBold
-
-
     
+end
 _G.UAER_UI = API
