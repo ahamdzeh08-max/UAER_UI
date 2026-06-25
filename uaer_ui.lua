@@ -375,8 +375,74 @@ local function toggleMinimize()
         end)
     end
 end
+btn.Font = Enum.Font.GothamBold
+btn.MouseButton1Click:Connect(function()
+        if action then action() end
+    end)
 
+    return btn
+end
+-- ===== API =====
+local API = {}
 
-    
+function API.CreateTab(name, icon)
+    local tab = {}
+
+    -- Sidebar button
+    local btn = Instance.new("TextButton")
+    btn.Size = UDim2.new(1, -10, 0, 32)
+    btn.BackgroundColor3 = COLORS.SidebarBg
+    btn.Text = icon .. "  " .. name
+    btn.TextColor3 = COLORS.TextWhite
+    btn.Font = Enum.Font.GothamBold
+    btn.TextSize = 14
+    btn.Parent = sidebar
+
+    -- Page
+    local page = Instance.new("ScrollingFrame")
+    page.Size = UDim2.new(1, 0, 1, 0)
+    page.BackgroundTransparency = 1
+    page.CanvasSize = UDim2.new(0, 0, 0, 0)
+    page.ScrollBarThickness = 4
+    page.Visible = false
+    page.Parent = pageContainer
+
+    local layout = Instance.new("UIListLayout")
+    layout.Padding = UDim.new(0, 8)
+    layout.Parent = page
+
+    btn.MouseButton1Click:Connect(function()
+        for _, t in ipairs(tabs) do
+            t.page.Visible = false
+        end
+        page.Visible = true
+    end)
+
+    tab.page = page
+    table.insert(tabs, tab)
+    return tab
+end
+
+function API.CreateButton(tab, text, callback)
+    local btn = Instance.new("TextButton")
+    btn.Size = UDim2.new(1, -20, 0, 40)
+    btn.BackgroundColor3 = COLORS.CardBg
+    btn.Text = text
+    btn.TextColor3 = COLORS.TextWhite
+    btn.Font = Enum.Font.GothamBold
+    btn.TextSize = 14
+    btn.Parent = tab.page
+
+    local corner = Instance.new("UICorner")
+    corner.CornerRadius = UDim.new(0, 8)
+    corner.Parent = btn
+
+    btn.MouseButton1Click:Connect(function()
+        if callback then callback() end
+    end)
+end
+
+-- ===== FINAL: EXPOSE API =====
+_G.UAER_UI = API    
 end
 _G.UAER_UI = API
