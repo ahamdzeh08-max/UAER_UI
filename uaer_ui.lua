@@ -376,13 +376,7 @@ local function toggleMinimize()
     end
 end
 
-local function makeControl(icon, action)
-    local btn = Instance.new("TextButton")
-    btn.Size = UDim2.new(0,28,0,28)
-    btn.BackgroundColor3 = COLORS.SidebarBg
-    btn.Text = icon
-    btn.TextColor3 = COLORS.TextMuted
-    btn.Font = Enum.Font.GothamBold
+
     
 end
 _G.UAER_UI = API
